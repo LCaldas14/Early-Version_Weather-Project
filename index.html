@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Plus Week 2</title>
-    <!-- CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,6 +12,7 @@
       crossorigin="anonymous"
     />
        
+     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script
       src="https://kit.fontawesome.com/6610e6b252.js"
       crossorigin="anonymous"
@@ -25,20 +25,36 @@
   <body>
     <div class="page-content">
     <div class="container">
-      <h1><span class="numbers">2</span> OCT, SUNDAY</h1>
-      <div class="city-search">
-      <form > 
-        <input type="text" placeholder="City Search...">
-     
-      
-      <button><i class="fa-solid fa-location-dot"></i></button>
-       </form>
-       </div>
-       <div class="location">
+      <h1>
+        <span class="numbers" id = "date-month-day">
 
+        </span>
+      </h1>
+      <div class="city-search">
+      <form  id= "search-form"> 
+        <input type="text" 
+        placeholder="City Search..."
+        autocomplete="off"
+        autofocus = "on"
+        id = "search-input"/>
+
+        <input type = "submit" value = "Search"/>
+      </form>
       
-      <h2>London, UK</h2>
+     
+
        </div>
+
+       
+       <div class="location">
+      <p id = "looking-for-city"></p>
+       </div>
+
+       <span id="geolocate">
+
+          <button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-location-dot"></i></button>
+        </span>
+
        <div class="farenheit">
       
      
@@ -48,24 +64,27 @@
    <div class="temperature">
 
     <img src="images/sunny.svg" width="400px"/>
-      <h3><span class ="numbers">18°C</span> Sunny</h3>
+      <h3><span class ="numbers" id = "currentTemp"></span> Sunny</h3>
        </div> 
       
       
          <ul class="weather-stats">
       <li><i class="fa-solid fa-wind icon"></i>
-        Wind: 7km/h</li>
+        Wind: <span id = "wind"></span></li>
       <li> <i class="fa-solid fa-droplet icon"></i>
-        Humidity: 40%</li>
+        Humidity: <span id = "humid"></span></li>
       <li>  <i class="fa-solid fa-umbrella icon"></i>
-        Chance of Rain: 2%</li>
+        Chance of Rain: <span id = "rain"></span></li>
     </ul>
         
        
       
       </br>
-      <div class="time">17:02</div>
-        <div class="forecast">
+      <h2>
+      <span class="time" id = "clock-24h"></span>
+      </h2>  
+      
+      <div class="forecast">
 
        
 
@@ -101,59 +120,5 @@
     </div>
     </div>
     Open-source code by Lara Caldas
-    <script>
-       import "./styles.css";
-let now = new Date();
-
-let h2 = document.querySelector("#clock-24h");
-let hour = now.getHours();
-let minutes = String(now.getMinutes()).padStart(2, "0");
-h2.innerHTML = `${hour}: ${minutes}`;
-
-let days = [
-  "SUNDAY",
-  "MONDAY",
-  "TUESDAY",
-  "WEDNESDAY",
-  "THURSDAY",
-  "FRIDAY",
-  "SATURDAY",
-];
-let months = [
-  "JAN",
-  "FEB",
-  "MAR",
-  "APR",
-  "MAY",
-  "JUN",
-  "JUL",
-  "AUG",
-  "SEP",
-  "OCT",
-  "NOV",
-  "DEC",
-];
-
-let h1 = document.querySelector("#date-month-day");
-let date = now.getDate();
-let month = months[now.getMonth()];
-let day = days[now.getDay()];
-
-h1.innerHTML = `${date} ${month}, ${day}`;
-
-function searchSubmit(event) {
-  event.preventDefault();
-  let p = document.querySelector("#looking-for-city");
-  p.innerHTML = `searching for ${searchInput.value}..`;
-}
-
-let searchInput = document.querySelector("#search-input");
-
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", searchSubmit);
-
-
-
-    </script>
   </body>
 </html>
